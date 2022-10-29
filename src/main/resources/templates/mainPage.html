@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Main Page</title>
+    </head>
+
+    <body>
+
+        <h1>Books in library:</h1>
+        <ul th:each = "book: ${books}" th:object="${book}">
+            <li>
+                <a th:text="*{name}" th:href="@{/bookDetails/{id}(id = *{id})}"></a>
+            </li>
+        </ul>
+
+        <h3>Add a new Book</h3>
+        <form action="#" th:action="@{/addBook}" method="post">
+
+            <input type="text" name="name"  placeholder="Name" required/>
+            <input type="text" name="date" placeholder="Date of publication" required/>
+            <input type="text" name="author"  placeholder="Author" required/>
+
+            <label for="genreName" >Book Genre</label>
+            <select type="text" name="genreName" id="genreName" >
+                <option th:each = "genre : *{genres}" th:value="${genre.name}" th:text="${genre.getName}"></option>
+            </select>
+            <input type="text" name="newGenreName"  placeholder="New Genre"/>
+            <button type="submit">Add</button>
+        </form>
+
+        <h3>Add a new Genre</h3>
+        <form action="#" th:action="@{/addGenre}" method="post">
+
+            <input type="text" name="name"  placeholder="Name of genre" required/>
+
+            <button type="submit">Add</button>
+        </form>
+
+
+    </body>
+</html>

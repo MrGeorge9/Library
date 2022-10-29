@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Book Details</title>
+    </head>
+    <body>
+        <h1>Books details:</h1>
+        <div th:object="${book}">
+            <p th:text="*{name}"></p>
+            <p th:text="*{date}"></p>
+            <p th:text="*{author}"></p>
+            <p th:text="*{genre.getName}"></p>
+        </div>
+
+        <h3>Books with same genre:</h3>
+        <ul th:each = "book: ${booksWithSameGenre}" th:object="${book}">
+            <li>
+                <a th:text="*{name}" th:href="@{/bookDetails/{id}(id = *{id})}"></a>
+            </li>
+        </ul>
+    </body>
+</html>
